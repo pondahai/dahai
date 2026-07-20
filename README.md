@@ -35,26 +35,25 @@
 1. 掃描當天月/日的歷史紀錄（從知識庫）
 2. 擷取段落級內容（不是只有標題）
 3. 透過 Cerebras 改寫成 FB 回顧文風
-4. 寫入 `dahai/js/daily-data.js`
+4. 寫入 `js/daily-data.js`
 5. 自動推送到 GitHub Pages
 
 ### 相關檔案
-- **生成腳本**：`scripts/generate_dahai_daily.js`
-- **資料檔**：`dahai/js/daily-data.js`
-- **前端**：`dahai/index.html`
+- **生成腳本**：`scripts/generate_dahai_daily.js`（位於本機 OpenClaw 工作區）
+- **資料檔**：`js/daily-data.js`
+- **前端**：`index.html`
 
 ## 🔧 技術架構
 
 ```
-pondahai.github.io/
-├── dahai/
-│   ├── index.html    # 主頁面
-│   ├── css/          # 樣式
-│   ├── js/
-│   │   └── daily-data.js   # 每日回顧資料
-│   ├── images/       # 圖片
-│   └── README.md     # 本說明檔
-└── 其他靜態頁面...
+dahai/                    # 本 repo 根目錄
+├── index.html            # 主頁面
+├── css/                  # 樣式
+├── js/
+│   ├── daily-data.js     # 每日回顧資料
+│   └── archive/          # 年度歸檔（按需載入）
+├── images/               # 圖片
+└── README.md             # 本說明檔
 ```
 
 ## 📝 相關腳本（位於本機 OpenClaw 工作區）
