@@ -3,6 +3,13 @@
 // 已按時間排序（新的在前）
 const dailyReports = [
     [
+        "2026-09-29",
+        "📖 歷史上的今天",
+        "歷史回顧：2024年09-29（digital-twin）https://youtu.be/Ma9FrN5COIo?si=uMwRL0eoLh8QJ2yx\n終於看到有人自製全片幅數位相機。",
+        "📚",
+        ""
+    ],
+    [
         "2026-09-28",
         "🌟 今日回顧精選",
         "歷史回顧：2025年09-28（digital-twin）在chatpgt的幫助下\n製作一個腳本 打包\nOpen‑WebUI + MCPO (Playwright‑MCP) + SearXNG on Ubuntu/WSL\n\n在Ubuntu/WSL環境下運作\n\n前天練習了MCP 昨天練習了searXNG(搜尋引擎中繼)\n今天成功把它們整合成單一腳本(非docker安裝)\n\n> [AI 圖片分析]: 這張圖片展示的是 Open WebUI 應用程式界面，呈現一個以「Google News 即時新聞整理為 Podcast 短文」為主題的對話頁面。整體分為 左側導航欄 與 右側內容區 兩部分，以下詳細描述各區域內容：；2025年09-28（digital-twin）FB Post\n\n- Platform: FB (Archive)\n- Date: 9/28/2025, 11:03:54 PM\n- Title: Dahai Pon 分享了 1 條連結。\n\n---\n\n明快打字機。",
@@ -202,13 +209,6 @@ const dailyReports = [
         "2026-08-31",
         "📖 歷史上的今天",
         "2024年8月31日：厲害👍；2024年8月31日：原來有這種主機板，專門給人拿來自組筆電~~他的設計理念跟我一樣（還是說我跟他一樣哈哈 #末日電腦 又有新玩法了；2024年8月31日：厲害👍。 當年的想法還挺一致的。",
-        "📚",
-        "gemma4:12b"
-    ],
-    [
-        "2026-08-30",
-        "📖 歷史上的今天",
-        "2025年8月30日：夢裡什麼都有；notebooklm的簡報影片正式有了繁中版本，我請他整理我的故事中的技術細節，感覺上正式版本的彙整更流暢；低成本本地LLM推理配置參考。現在看來當初就在研究本地模型了。",
         "📚",
         "gemma4:12b"
     ]
