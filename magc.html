@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAGC 掌機生態系</title>
+<meta name="description" content="MAGC（Makecode Arcade Game Console）：RP2040 掌機與它的軟體生態系。一塊硬體，燒不同韌體就變成不同機器：Doom、NES、Apple II、電子字典、SDR 收音機與原生遊戲。">
+<meta property="og:title" content="MAGC — 一塊硬體，燒不同韌體就變成不同機器">
+<meta property="og:description" content="RP2040 掌機與它的軟體生態系：載入器選單、Doom、NES、Apple II、電子字典、SDR 收音機、原生遊戲。">
+<meta property="og:image" content="images/magc/trio.jpg">
+<link rel="stylesheet" href="css/product.css">
+</head>
+<body class="p-magc">
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="index.html">🦐 Pondahai</a>
+        <nav aria-label="頁面導覽">
+            <a href="#hardware">硬體</a>
+            <a href="#ecosystem">生態系</a>
+            <a href="#sdk">SDK</a>
+            <a href="#start">上手</a>
+            <a href="index.html#portfolio-personal">← 實體作品</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+        <img class="hero-logo" src="images/magc/logo.png" width="640" height="230" alt="magc" onerror="this.remove()">
+        <span class="eyebrow" style="display:block">掌機系列 · 第二代 · Makecode Arcade Game Console</span>
+        <h1>一塊硬體，燒不同韌體<br>就變成不同的機器</h1>
+        <p class="tagline">MAGC 是一台以 RP2040 為核心的開源掌機。它從 MakeCode Arcade 積木遊戲起家，現在同一塊板子可以跑 Doom、紅白機模擬、Apple II 電腦、電子字典、長波收音機，也有專門為它寫的原生遊戲。開機從 SD 卡選單挑一個，就換成另一台機器。</p>
+        <ul class="chips">
+            <li>RP2040</li>
+            <li>ILI9341 320×240</li>
+            <li>SD 卡選單</li>
+            <li>18 個專案</li>
+            <li>開源</li>
+        </ul>
+        <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/pondahai/rp2040-retro-handheld" target="_blank" rel="noopener">生態系總綱</a>
+            <a class="btn btn-ghost" href="https://github.com/pondahai/rp2040-handheld-bundle/releases" target="_blank" rel="noopener">下載整包韌體</a>
+            <a class="btn btn-ghost" href="scratchboy.html">← 前代：Scratch Boy</a>
+        </div>
+        <figure class="hero-figure narrow">
+            <img src="images/magc/trio.jpg" width="595" height="440" alt="三台印著 maGC 字樣的白色 3D 列印掌機並排，螢幕分別顯示平台遊戲、GAME OVER 畫面與 Doom" onerror="this.remove()">
+            <figcaption>三台 MAGC，同一塊板子跑著不同的遊戲，右邊那台是 Doom。</figcaption>
+        </figure>
+    </section>
+
+    <!-- 定位 -->
+    <section id="why">
+        <div class="split">
+            <div>
+                <span class="eyebrow">從 Scratch Boy 到 MAGC</span>
+                <h2 class="sec-title">同樣的初衷，換一顆省電的心臟</h2>
+                <p>第一代 <a href="scratchboy.html">Scratch Boy</a> 想讓小朋友把自己做的遊戲拿在手上玩，但 Raspberry Pi 跑整個瀏覽器太耗電，電池撐不住。</p>
+                <p>MAGC 換成一顆便宜的 RP2040 微控制器：通電即用、沒有作業系統要開機、電池吃得很省。教育的路線也從 Scratch 換成微軟的 MakeCode Arcade，一樣是拖拉積木做遊戲，但可以直接編譯成在微控制器上跑的韌體。</p>
+                <p>後來發現這塊板子的潛力遠不止於此：超頻到 250 MHz 之後，它跑得動 Doom、全速 NES，甚至一台完整的 Apple II。</p>
+            </div>
+            <figure class="shot tall">
+                <img src="images/magc/doom-hand.jpg" width="1000" height="1000" loading="lazy" alt="手握一台白色 MAGC 掌機，螢幕顯示 DOOM 標題畫面" onerror="this.parentElement.remove()">
+                <figcaption>RP2040 跑 Doom。</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- 硬體 -->
+    <section id="hardware">
+        <span class="eyebrow">硬體骨架</span>
+        <h2 class="sec-title">所有韌體共用同一塊板子</h2>
+        <p class="lead">能「一塊板子跑所有韌體」的關鍵，是螢幕、按鍵矩陣與 SD 卡的接腳定義在每個專案之間完全一致。接腳表只有一份，所有子專案都以它為準。</p>
+
+        <table class="spec">
+            <tbody>
+                <tr><th>微控制器</th><td>Raspberry Pi Pico（RP2040 雙核 Cortex-M0+），可超頻到約 250 MHz</td></tr>
+                <tr><th>螢幕</th><td>2.4" / 2.8" ILI9341 SPI TFT，320×240，SPI 最高跑到 62.5 MHz</td></tr>
+                <tr><th>按鍵</th><td>74HC595 + 74HC165 移位暫存器掃描 8×8 矩陣，只用 3 支 GPIO，順便驅動 LED</td></tr>
+                <tr><th>儲存</th><td>SPI SD 卡：放韌體、選單封面、ROM、存檔、字典資料</td></tr>
+                <tr><th>音效</th><td>1-bit PWM → RC 低通 → PAM8403 D 類放大 → 4Ω / 8Ω 喇叭</td></tr>
+                <tr><th>選配</th><td>Meshtastic LoRa 節點（UART），變成離網文字終端機</td></tr>
+                <tr><th>外殼</th><td>3D 列印，多次改版</td></tr>
+            </tbody>
+        </table>
+
+        <div class="gallery" style="margin-top:18px">
+            <figure class="shot contain">
+                <img src="images/magc/pcb-v24.jpg" width="900" height="602" loading="lazy" alt="MAGC v2.4 電路板的 3D 算圖：深綠色 PCB、搖桿、按鍵、SD 卡槽與螢幕位置" onerror="this.parentElement.remove()">
+                <figcaption>主板 v2.4（KiCad 3D）</figcaption>
+            </figure>
+            <figure class="shot contain">
+                <img src="images/magc/case-v1.png" width="600" height="454" loading="lazy" alt="橘色 3D 列印外殼的設計圖，可看到螢幕開窗與按鍵開孔" onerror="this.parentElement.remove()">
+                <figcaption>外殼早期版本</figcaption>
+            </figure>
+            <figure class="shot contain">
+                <img src="images/magc/case-v2.png" width="494" height="408" loading="lazy" alt="紅色 3D 列印外殼設計圖，側面印有 maGC 字樣" onerror="this.parentElement.remove()">
+                <figcaption>maGC 外殼</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- 生態系 -->
+    <section id="ecosystem">
+        <span class="eyebrow">軟體生態系</span>
+        <h2 class="sec-title">裝進同一張 SD 卡的十幾台機器</h2>
+        <p class="lead">每個專案都是獨立的韌體，燒成一支 <code>.uf2</code>。可以單獨燒進掌機，也可以全部放進 SD 卡，開機由載入器的封面選單挑一個執行。</p>
+
+        <!-- 系統軟體 -->
+        <div class="group">
+            <div class="group-head"><h3>🧭 系統軟體</h3><span>讓所有韌體共存的基礎設施</span></div>
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="emoji">💾</span>Retro Loader</h3>
+                    <p>開機圖形選單，cover-flow 封面列出 SD 卡上的韌體，選一個寫進 flash 再交棒執行。自己只佔 flash 前 16 KB，換韌體不必再拔電按 BOOTSEL。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-retro-loader" target="_blank" rel="noopener">rp2040-retro-loader →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">🔌</span>SD Mount</h3>
+                    <p>把掌機的 SD 卡變成 USB 隨身碟。搭配電腦端腳本，不拔卡就能把新韌體推進去，甚至遠端叫掌機直接啟動。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-retro-sdmount" target="_blank" rel="noopener">rp2040-retro-sdmount →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">📦</span>Handheld Bundle</h3>
+                    <p>編譯好的整包成品：載入器、跳板、各專題韌體、SD Mount 與選單封面，附 sha256 校驗，下載就能用。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-handheld-bundle" target="_blank" rel="noopener">rp2040-handheld-bundle →</a>
+                </article>
+            </div>
+        </div>
+
+        <!-- 原生遊戲 -->
+        <div class="group">
+            <div class="group-head"><h3>🎮 原生遊戲</h3><span>以 Retro SDK 撰寫，專為這台掌機設計</span></div>
+            <div class="grid">
+                <article class="card">
+                    <img class="thumb pixel" src="images/magc/shot-lightpath.png" width="320" height="240" loading="lazy" alt="LIGHT PATH 遊戲畫面：雷射經鏡子反射導入接收器" onerror="this.remove()">
+                    <h3>🔦 LIGHT PATH</h3>
+                    <p>轉動鏡子把雷射導進所有接收器的益智遊戲。第一款原生遊戲，也是 SDK 的完整範例；每一關的可解性都由電腦端測試保證。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-lightpath" target="_blank" rel="noopener">rp2040-lightpath →</a>
+                </article>
+                <article class="card">
+                    <img class="thumb fit pixel" src="images/magc/shot-skyace.png" width="976" height="492" loading="lazy" alt="SKY ACE 遊戲畫面：直向捲軸空戰與船艦關" onerror="this.remove()">
+                    <h3>✈️ SKY ACE</h3>
+                    <p>致敬 1943 的直向捲軸空戰：能量條、翻滾閃避、空戰與船艦關輪流，魔王是戰艦與航空母艦。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-skyace" target="_blank" rel="noopener">rp2040-skyace →</a>
+                </article>
+                <article class="card">
+                    <img class="thumb pixel" src="images/magc/shot-hopper.png" width="320" height="240" loading="lazy" alt="HOPPER 遊戲畫面：青蛙在草地與磚塊間跳躍收集金幣" onerror="this.remove()">
+                    <h3>🐸 HOPPER</h3>
+                    <p>橫向捲軸平台跳躍：踩甲蟲、收金幣、抓終點旗。關卡是 ASCII 字串，改字元就能改地形。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-hopper" target="_blank" rel="noopener">rp2040-hopper →</a>
+                </article>
+                <article class="card">
+                    <img class="thumb pixel" src="images/magc/shot-nightrun.png" width="640" height="480" loading="lazy" alt="NIGHT RUN 遊戲畫面：夜間公路上的紅色賽車與路燈" onerror="this.remove()">
+                    <h3>🏎️ NIGHT RUN</h3>
+                    <p>偽 3D 夜間公路賽車，五關、氮氣加速、可自訂賽道。每幀全畫面重畫，穩定 30 fps。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-nightrun" target="_blank" rel="noopener">rp2040-nightrun →</a>
+                </article>
+            </div>
+        </div>
+
+        <!-- 移植與模擬 -->
+        <div class="group">
+            <div class="group-head"><h3>👾 移植與模擬</h3><span>把經典搬上微控制器</span></div>
+            <div class="grid">
+                <article class="card">
+                    <h3><img class="cover pixel" src="images/magc/cover-doom.jpg" width="218" height="240" loading="lazy" alt="" onerror="this.remove()"><span class="emoji">🔫</span>Doom</h3>
+                    <p>以 rp2040-doom 為基礎，改成把畫面推到 ILI9341 SPI 螢幕，並加上 MAGC 的按鍵掃描。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-doom-ili9341" target="_blank" rel="noopener">rp2040-doom-ili9341 →</a>
+                </article>
+                <article class="card">
+                    <h3><img class="cover pixel" src="images/magc/cover-nes.jpg" width="240" height="194" loading="lazy" alt="" onerror="this.remove()"><span class="emoji">🕹️</span>InfoNES</h3>
+                    <p>紅白機模擬器，SD 卡選 ROM、支援 FDS，選單有中文字型。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-ili9341-infones" target="_blank" rel="noopener">rp2040-ili9341-infones →</a>
+                </article>
+                <article class="card">
+                    <h3><img class="cover pixel" src="images/magc/cover-apple2.jpg" width="240" height="221" loading="lazy" alt="" onerror="this.remove()"><span class="emoji">🍎</span>PicoApple2</h3>
+                    <p>Apple II 模擬器：Rust 寫 6502 與 Disk II 核心、C++ 雙核渲染，週期精確的喇叭音效，讀寫 <code>.DSK</code>。</p>
+                    <a class="more" href="https://github.com/pondahai/PicoApple2" target="_blank" rel="noopener">PicoApple2 →</a>
+                </article>
+            </div>
+        </div>
+
+        <!-- 工具與通訊 -->
+        <div class="group">
+            <div class="group-head"><h3>🧰 實用工具與通訊</h3><span>不玩遊戲的時候</span></div>
+            <div class="grid">
+                <article class="card">
+                    <h3><img class="cover pixel" src="images/magc/cover-dict.png" width="240" height="240" loading="lazy" alt="" onerror="this.remove()"><span class="emoji">📖</span>電子字典</h3>
+                    <p>英漢／漢英字典，注音輸入。發音沒用錄音，而是 1980 年代電子字典的共振峰合成，整個合成器約 7 KB。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-retro-dict" target="_blank" rel="noopener">rp2040-retro-dict →</a>
+                </article>
+                <article class="card">
+                    <h3><img class="cover pixel" src="images/magc/cover-sdr.png" width="96" height="96" loading="lazy" alt="" onerror="this.remove()"><span class="emoji">📻</span>SDR 收音機</h3>
+                    <p>用 ADC 直接取樣的 0–250 kHz 長波收音機：頻譜、瀑布圖、AM/CW/SSB 解調，還能解中國 BPC 與日本 JJY 的電波授時碼。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-retro-sdr" target="_blank" rel="noopener">rp2040-retro-sdr →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">📝</span>注音編輯器</h3>
+                    <p>在掌機上用注音打中文、存到 SD 卡的文件編輯器。開發中。</p>
+                    <a class="more" href="https://github.com/pondahai/rp2040-retro-editor" target="_blank" rel="noopener">rp2040-retro-editor →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">⌨️</span>機械鍵盤</h3>
+                    <p>接上電腦就是一把 USB 自訂機械鍵盤，同一組 595/165 按鍵矩陣。</p>
+                    <a class="more" href="https://github.com/pondahai/pico_keyboard" target="_blank" rel="noopener">pico_keyboard →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">📡</span>離網終端機</h3>
+                    <p>嵌入式注音輸入法加上 Meshtastic，經 LoRa 收發中文訊息，不靠手機網路。</p>
+                    <a class="more" href="https://github.com/pondahai/pico_keyboard_ime_terminal" target="_blank" rel="noopener">pico_keyboard_ime_terminal →</a>
+                </article>
+                <article class="card">
+                    <h3><span class="emoji">🔍</span>鍵盤檢查器</h3>
+                    <p>量出 8×8 矩陣座標與實體鍵的對應，硬體接腳表裡的鍵盤真值表就是用它測的。</p>
+                    <a class="more" href="https://github.com/pondahai/PicoApple2-KeyboardTester" target="_blank" rel="noopener">PicoApple2-KeyboardTester →</a>
+                </article>
+            </div>
+        </div>
+
+        <!-- 教育 -->
+        <div class="group">
+            <div class="group-head"><h3>🧩 教育</h3><span>MAGC 的起點</span></div>
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="emoji">🧩</span>MakeCode Arcade 掌機</h3>
+                    <p>MAGC 名字的由來。支援微軟 MakeCode Arcade，拖拉積木就能做出在掌機上跑的遊戲；電路圖、PCB 各版本與外殼 STL 都在這裡。</p>
+                    <a class="more" href="https://github.com/pondahai/makecode_arcade_console" target="_blank" rel="noopener">makecode_arcade_console →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDK -->
+    <section id="sdk">
+        <div class="split">
+            <div>
+                <span class="eyebrow">開發工具</span>
+                <h2 class="sec-title">Retro SDK <span class="badge accent">私人</span></h2>
+                <p>寫新韌體的起點，目前是私人專案。它把每個韌體都要重寫一次的部分抽成共用模組：螢幕（16-bit SPI + DMA 雙緩衝）、D-pad、PWM 音效、SD 卡讀寫。</p>
+                <ul>
+                    <li><strong>分條渲染的 2D 繪圖</strong>：tilemap、sprite、8×8 文字一次只畫 320×16 的一條，不需要 150 KB 的 framebuffer，也只重送有變動的條。</li>
+                    <li><strong>一行開新專案</strong>：從範本產生專案骨架，一次建出選單版與可直接燒錄的 standalone 版 <code>.uf2</code>。</li>
+                    <li><strong>一鍵上機</strong>：建置完經 SD Mount 推進 SD 卡，由載入器直接啟動。</li>
+                    <li><strong>在電腦上開發</strong>：遊戲邏輯與畫面是純 C，可以在電腦上輸出成 PNG 預覽、跑測試。</li>
+                    <li><strong>共用遊戲模組</strong>：例如 NIGHT RUN 的偽 3D 公路投影，之後的賽車遊戲可以直接沿用。</li>
+                </ul>
+            </div>
+            <div>
+                <figure class="shot contain">
+                    <img src="images/magc/games-titles.jpg" width="960" height="729" loading="lazy" alt="LIGHT PATH、SKY ACE、HOPPER、NIGHT RUN 四款遊戲的標題畫面拼貼" onerror="this.parentElement.remove()">
+                    <figcaption>SDK 完成後三天內誕生的四款原生遊戲</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- 上手 -->
+    <section id="start">
+        <span class="eyebrow">快速開始</span>
+        <h2 class="sec-title">兩種用法</h2>
+        <div class="split" style="align-items:start">
+            <div>
+                <h3 style="margin-bottom:10px">單一韌體：拖曳燒錄</h3>
+                <ol class="steps">
+                    <li>到想玩的子專案 Releases 下載 <code>.uf2</code>。</li>
+                    <li>按住掌機的 <code>BOOTSEL</code> 再插上 USB，電腦會出現 <code>RPI-RP2</code> 隨身碟。</li>
+                    <li>把 <code>.uf2</code> 拖進去，掌機自動重開就是新機器。</li>
+                </ol>
+            </div>
+            <div>
+                <h3 style="margin-bottom:10px">多套韌體：SD 卡選單</h3>
+                <ol class="steps">
+                    <li>燒入載入器，把整包韌體與封面放進 SD 卡。</li>
+                    <li>開機進封面選單，選一個就執行；按 RESET 回選單。</li>
+                    <li>停在選單時接上電腦，也能遠端推送與啟動：</li>
+                </ol>
+<pre><code>python retro_sync.py push RetroFoo.uf2
+python retro_sync.py run  INFONES_STANDALONE
+python retro_sync.py push RetroFoo.uf2 --run</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- 時間軸 -->
+    <section id="story">
+        <span class="eyebrow">開發歷程</span>
+        <h2 class="sec-title">從積木遊戲機到生態系</h2>
+        <ol class="timeline">
+            <li><time>2022 / 11</time><p>第一版電路板，跑 MakeCode Arcade 積木遊戲。MAGC 誕生。</p></li>
+            <li><time>2023 / 4 – 5</time><p>移植 InfoNES 紅白機模擬與 Doom，確認這塊板子的效能天花板遠比預期高。</p></li>
+            <li><time>2023</time><p>主板改版到 v2.3 / v2.4，外殼改成印有 maGC 字樣的版本。</p></li>
+            <li><time>2025 / 7 – 11</time><p>同一組按鍵矩陣長出機械鍵盤與注音離網終端機。</p></li>
+            <li><time>2026 / 3</time><p>PicoApple2：Rust + C++ 的 Apple II 模擬器。</p></li>
+            <li><time>2026 / 4</time><p>建立生態系總綱，統一接腳表，定下「同一塊硬體、燒不同韌體」的方向。</p></li>
+            <li><time>2026 / 8 – 10</time><p>載入器選單、整包成品、電子字典、注音編輯器、SDR 收音機陸續上線。</p></li>
+            <li><time>2026 / 11</time><p>SD Mount 與 Retro SDK 完成；接著三天內寫出 LIGHT PATH、SKY ACE、HOPPER、NIGHT RUN 四款原生遊戲。</p></li>
+        </ol>
+    </section>
+
+    <!-- 系列 -->
+    <section id="series">
+        <span class="eyebrow">掌機系列</span>
+        <h2 class="sec-title">同一個初衷，兩代機器</h2>
+        <div class="series">
+            <a href="scratchboy.html">
+                <img src="images/scratch_console.jpg" alt="" loading="lazy">
+                <span><small>第一代 · Raspberry Pi</small><strong>← Scratch Boy</strong></span>
+            </a>
+            <a class="current" href="magc.html" aria-current="page">
+                <img src="images/magc/trio.jpg" alt="" loading="lazy">
+                <span><small>第二代 · RP2040</small><strong>MAGC 掌機生態系</strong></span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="foot">
+        <p>生態系總綱以 MIT License 開源，各子專案授權以其 repo 為準；Retro SDK 為私人專案。Doom 移植基於 kilograham/rp2040-doom；NES 模擬基於 InfoNES、pico-infones 與 pico-infonesPlus，致謝原作者。</p>
+        <p>MakeCode Arcade 為 Microsoft 的專案。</p>
+        <p><a href="index.html">← 回 Pondahai 主頁</a></p>
+    </footer>
+</main>
+
+</body>
+</html>

@@ -10,6 +10,7 @@
 |------|------|
 | **🎯 作品集** | 技術專案展示區 |
 | **🛠️ 個人作品集** | 個人業餘專案 |
+| **🎮 掌機介紹頁** | `scratchboy.html`（第一代 Scratch Boy）、`magc.html`（第二代 MAGC 與 RP2040 生態系），從實體作品卡片進入 |
 | **📄 學術履歷** | 博士候選人學經歷 |
 | **📰 每日回顧報** | 歷史上的今天（自動從數位分身知識庫生成）|
 
@@ -48,11 +49,16 @@
 ```
 dahai/                    # 本 repo 根目錄
 ├── index.html            # 主頁面
-├── css/                  # 樣式
+├── projects.html         # 網頁程式集
+├── scratchboy.html       # Scratch Boy 掌機介紹頁
+├── magc.html             # MAGC 掌機生態系介紹頁
+├── css/
+│   ├── feed.css          # 主頁樣式
+│   └── product.css       # 掌機介紹頁共用樣式（含深色模式）
 ├── js/
 │   ├── daily-data.js     # 每日回顧資料
 │   └── archive/          # 年度歸檔（按需載入）
-├── images/               # 圖片
+├── images/               # 圖片（scratchboy/、magc/ 為介紹頁用圖，已縮圖）
 └── README.md             # 本說明檔
 ```
 

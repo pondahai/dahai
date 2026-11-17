@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scratch Boy 掌機</title>
+<meta name="description" content="Scratch Boy（SGC, Scratch Game Console）：把 Scratch 3 變成隨身遊戲機的手持掌機，彭大海的掌機系列第一代。">
+<meta property="og:title" content="Scratch Boy — 可自己設計遊戲的手持遊戲機">
+<meta property="og:description" content="把 Scratch 3 變成隨身遊戲機：Raspberry Pi、3.5 吋螢幕、WiFi 同步 Scratch 工作坊。">
+<meta property="og:image" content="images/scratchboy/hero.jpg">
+<link rel="stylesheet" href="css/product.css">
+</head>
+<body class="p-scratchboy">
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="index.html">🦐 Pondahai</a>
+        <nav aria-label="頁面導覽">
+            <a href="#idea">理念</a>
+            <a href="#spec">規格</a>
+            <a href="#inside">架構</a>
+            <a href="#story">歷程</a>
+            <a href="index.html#portfolio-personal">← 實體作品</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="eyebrow">掌機系列 · 第一代 · SGC</span>
+        <h1>Scratch Boy</h1>
+        <p class="tagline">可以自己設計遊戲的手持遊戲機。把 Scratch 3 從電腦裡搬出來，裝進一台拿在手上的掌機。玩別人的遊戲，也玩自己做的遊戲，玩到一半還能回去改程式。</p>
+        <ul class="chips">
+            <li>Scratch 3</li>
+            <li>Raspberry Pi</li>
+            <li>3.5" LCD</li>
+            <li>WiFi 同步工作坊</li>
+            <li>Maker Faire Taipei 2019</li>
+        </ul>
+        <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/pondahai/scratchboy" target="_blank" rel="noopener">GitHub 專案</a>
+            <a class="btn btn-ghost" href="https://www.facebook.com/scratchgameconsole/" target="_blank" rel="noopener">粉絲專頁</a>
+            <a class="btn btn-ghost" href="magc.html">下一代：MAGC →</a>
+        </div>
+        <figure class="hero-figure">
+            <img src="images/scratchboy/hero.jpg" width="1600" height="685" alt="雙手握著橘色透明壓克力外殼的 Scratch Boy，螢幕上正在跑 Scratch 平台遊戲，後方筆電開著 Scratch 編輯器" onerror="this.remove()">
+            <figcaption>電腦上寫的 Scratch 遊戲，直接拿在手上玩。</figcaption>
+        </figure>
+    </section>
+
+    <!-- 理念 -->
+    <section id="idea">
+        <div class="split">
+            <div>
+                <span class="eyebrow">為什麼要做</span>
+                <h2 class="sec-title">回到當初學寫程式的理由</h2>
+                <p>我會自學程式，是因為小時候玩過電腦遊戲，讚嘆它的豐富與好玩；後來走上工程師這條路，也是因為想徹底搞懂遊戲機是怎麼運作的。</p>
+                <p>Scratch 是現在兒童程式課最常見的平台。剛接觸時以為它只是給小朋友的入門語言，實際寫下去才發現複雜度可以做得很高。我試著用 Scratch 復刻幾款小時候的經典遊戲，還原度幾乎到 100%。</p>
+                <p>剩下的限制只有一個：Scratch 遊戲只能在電腦前面玩。所以 Scratch Boy 不只是一台遊戲機，而是想讓自己寫的遊戲有一個更酷的舞台，讓「做遊戲」本身變成學程式的動機。</p>
+            </div>
+            <figure class="shot">
+                <img src="images/scratchboy/desk.jpg" width="1200" height="798" loading="lazy" alt="木桌上的筆電開著 Scratch 編輯器，旁邊放著一台橘色 Scratch Boy" onerror="this.remove()">
+                <figcaption>寫程式與玩遊戲在同一張桌上完成。</figcaption>
+            </figure>
+        </div>
+
+        <div class="grid" style="margin-top:28px">
+            <article class="card">
+                <h3><span class="emoji">🎒</span>遊戲帶著走</h3>
+                <p>Scratch 3 化身遊戲機，專案檔存在機器裡，不必守在電腦前。</p>
+            </article>
+            <article class="card">
+                <h3><span class="emoji">🔄</span>邊玩邊改</h3>
+                <p>透過 WiFi 同步 Scratch 工作坊，電腦上改完，掌機上馬上玩到新版本。</p>
+            </article>
+            <article class="card">
+                <h3><span class="emoji">🧩</span>100% 可修改</h3>
+                <p>Scratch 社群有來自全世界的遊戲，每一款都能打開來看、拿來改，學遊戲設計的最好教材。</p>
+            </article>
+            <article class="card">
+                <h3><span class="emoji">📺</span>接大螢幕</h3>
+                <p>保留 HDMI 輸出，教室裡可以直接投到大螢幕上示範。</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- 規格 -->
+    <section id="spec">
+        <span class="eyebrow">硬體規格</span>
+        <h2 class="sec-title">規格</h2>
+        <p class="lead">集資企劃階段的概念機規格，以現成模組組合實現。</p>
+        <table class="spec">
+            <tbody>
+                <tr><th>螢幕</th><td>3.5 吋 SPI LCD</td></tr>
+                <tr><th>主機</th><td>Raspberry Pi，預載 Scratch Boy 團隊整合的 SGC OS</td></tr>
+                <tr><th>按鍵</th><td>上、下、左、右、空白鍵、第二上鍵、功能鍵、單擊鍵（對應成 Scratch 常用的鍵盤按鍵）</td></tr>
+                <tr><th>網路</th><td>WiFi，連接 Scratch 工作坊同步遊戲</td></tr>
+                <tr><th>聲音</th><td>1W 單聲道喇叭</td></tr>
+                <tr><th>影像輸出</th><td>HDMI，可外接大螢幕</td></tr>
+                <tr><th>電池</th><td>內建鋰電池座，2 串保護板，充電平衡保護</td></tr>
+                <tr><th>電源</th><td>5.1V / 2.5A，或 8.4V 鋰電池充電器</td></tr>
+                <tr><th>外殼</th><td>雷切透明壓克力疊層，多種顏色；另有 3D 列印外殼版本</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 架構 -->
+    <section id="inside">
+        <span class="eyebrow">系統架構</span>
+        <h2 class="sec-title">機殼裡面發生了什麼</h2>
+        <p class="lead">Scratch 3 原本是給桌機瀏覽器用的。要讓它在一台小掌機上開機即玩，背後要串起好幾層：</p>
+
+        <div class="diagram" role="img" aria-label="Scratch Boy 系統架構圖：GPIO 按鍵經 uinput 變成鍵盤事件送進 Chromium 裡的 Scratch 3；fbcp-ili9341 把畫面複製到 SPI LCD；ATmega32U4 在開機初期先點亮螢幕再交出 SPI；lighttpd 與 Lua CGI 提供按鍵對應設定頁；WiFi 連到 Scratch 工作坊。">
+            <svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrow" d="M0,0 L10,5 L0,10 z"/></marker>
+                    <marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrow-accent" d="M0,0 L10,5 L0,10 z"/></marker>
+                </defs>
+
+                <!-- Raspberry Pi frame -->
+                <rect x="190" y="20" width="380" height="290" rx="14" class="box"/>
+                <text x="206" y="44" font-size="14" font-weight="700">Raspberry Pi · SGC OS</text>
+
+                <rect x="210" y="62" width="340" height="66" rx="10" class="box-accent"/>
+                <text x="380" y="90" font-size="15" font-weight="700" text-anchor="middle">Chromium 全螢幕 · Scratch 3</text>
+                <text x="380" y="111" font-size="12" class="muted" text-anchor="middle">開機自動進入 scratchboy.html</text>
+
+                <rect x="210" y="146" width="160" height="62" rx="10" class="box"/>
+                <text x="290" y="172" font-size="13" font-weight="700" text-anchor="middle">gpiokey（Python）</text>
+                <text x="290" y="192" font-size="11.5" class="muted" text-anchor="middle">GPIO → uinput 鍵盤</text>
+
+                <rect x="390" y="146" width="160" height="62" rx="10" class="box"/>
+                <text x="470" y="172" font-size="13" font-weight="700" text-anchor="middle">lighttpd + Lua CGI</text>
+                <text x="470" y="192" font-size="11.5" class="muted" text-anchor="middle">按鍵對應設定頁</text>
+
+                <rect x="210" y="226" width="340" height="62" rx="10" class="box"/>
+                <text x="380" y="252" font-size="13" font-weight="700" text-anchor="middle">fbcp-ili9341</text>
+                <text x="380" y="272" font-size="11.5" class="muted" text-anchor="middle">把 framebuffer 以 DMA 複製到 SPI 螢幕</text>
+
+                <!-- left: inputs -->
+                <rect x="16" y="146" width="140" height="62" rx="10" class="box"/>
+                <text x="86" y="172" font-size="13" font-weight="700" text-anchor="middle">8 顆按鍵</text>
+                <text x="86" y="192" font-size="11.5" class="muted" text-anchor="middle">GPIO</text>
+
+                <rect x="16" y="226" width="140" height="62" rx="10" class="box-accent"/>
+                <text x="86" y="252" font-size="13" font-weight="700" text-anchor="middle">ATmega32U4</text>
+                <text x="86" y="272" font-size="11.5" class="muted" text-anchor="middle">開機畫面，再交出 SPI</text>
+
+                <!-- right: outputs -->
+                <rect x="604" y="226" width="140" height="62" rx="10" class="box"/>
+                <text x="674" y="252" font-size="13" font-weight="700" text-anchor="middle">3.5" SPI LCD</text>
+                <text x="674" y="272" font-size="11.5" class="muted" text-anchor="middle">SPI 介面</text>
+
+                <rect x="604" y="62" width="140" height="66" rx="10" class="box"/>
+                <text x="674" y="90" font-size="13" font-weight="700" text-anchor="middle">Scratch 工作坊</text>
+                <text x="674" y="111" font-size="11.5" class="muted" text-anchor="middle">WiFi 同步專案</text>
+
+                <rect x="604" y="146" width="140" height="62" rx="10" class="box"/>
+                <text x="674" y="172" font-size="13" font-weight="700" text-anchor="middle">HDMI · 喇叭</text>
+                <text x="674" y="192" font-size="11.5" class="muted" text-anchor="middle">大螢幕 / 1W 音效</text>
+
+                <!-- wires -->
+                <path class="wire" d="M156 177 H206" marker-end="url(#ah)"/>
+                <path class="wire" d="M290 146 V132" marker-end="url(#ah)"/>
+                <path class="wire" d="M470 146 V132" marker-end="url(#ah)"/>
+                <path class="wire" d="M380 128 V222" marker-end="url(#ah)"/>
+                <path class="wire" d="M550 257 H600" marker-end="url(#ah)"/>
+                <path class="wire-accent" d="M156 257 C180 257 180 300 380 300 C560 300 580 270 600 262" marker-end="url(#aha)" stroke-dasharray="5 4"/>
+                <path class="wire" d="M600 95 H554" marker-start="url(#ah)" marker-end="url(#ah)"/>
+                <path class="wire" d="M550 100 C580 100 580 177 600 177" marker-end="url(#ah)"/>
+            </svg>
+        </div>
+
+        <div class="grid" style="margin-top:18px">
+            <article class="card">
+                <h3>⚡ 「雙大腦」開機</h3>
+                <p>Raspberry Pi 開機要一段時間，所以由一顆 ATmega32U4 在通電瞬間先搶下 SPI、點亮螢幕；等 Pi 準備好，它執行 <code>SPI.end()</code> 把腳位交還，由 fbcp 接手。交棒沒做好就會 DMA 衝突，這是整台機器最精巧也最容易踩雷的地方。</p>
+            </article>
+            <article class="card">
+                <h3>🎮 按鍵變鍵盤</h3>
+                <p>Scratch 遊戲讀的是鍵盤。GPIO 按鍵經 Python 寫的 gpiokey 服務，透過 Linux uinput 模擬成真正的鍵盤事件；哪顆實體鍵對到哪個按鍵，可以在內建的設定網頁上改。</p>
+            </article>
+            <article class="card">
+                <h3>🖥️ 小螢幕的畫面</h3>
+                <p>fbcp-ili9341 把 Pi 的畫面複製到 SPI 螢幕。它依賴舊版 DispmanX API，新版系統要改用 Fake KMS 並強制產生 framebuffer 才會有畫面。</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- 圖庫 -->
+    <section id="gallery">
+        <span class="eyebrow">產品攝影</span>
+        <h2 class="sec-title">一整排壓克力色</h2>
+        <div class="gallery">
+            <figure class="shot">
+                <img src="images/scratchboy/colors.jpg" width="1200" height="798" loading="lazy" alt="橘、黃、藍、綠與透明五種顏色的 Scratch Boy 平放在木紋桌面上" onerror="this.parentElement.remove()">
+                <figcaption>五種外殼顏色</figcaption>
+            </figure>
+            <figure class="shot">
+                <img src="images/scratchboy/lineup.jpg" width="1200" height="799" loading="lazy" alt="多台不同顏色的 Scratch Boy 直立排成一列，最前面一台亮著螢幕" onerror="this.parentElement.remove()">
+                <figcaption>疊層壓克力外殼的側面</figcaption>
+            </figure>
+            <figure class="shot">
+                <img src="images/scratchboy/laptop.jpg" width="1200" height="798" loading="lazy" alt="透明外殼的 Scratch Boy 立在筆電前，筆電螢幕開著 Scratch" onerror="this.parentElement.remove()">
+                <figcaption>搭配電腦上的 Scratch 一起用</figcaption>
+            </figure>
+            <figure class="shot">
+                <img src="images/scratchboy/logo-shot.jpg" width="1000" height="1000" loading="lazy" alt="黃色外殼 Scratch Boy 特寫，下方是 SCRATCH BOY 標誌" onerror="this.parentElement.remove()">
+                <figcaption>SCRATCH BOY</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- 歷程 -->
+    <section id="story">
+        <div class="split">
+            <div>
+                <span class="eyebrow">開發歷程</span>
+                <h2 class="sec-title">從樣品機到集資企劃</h2>
+                <ol class="timeline">
+                    <li><time>2019 / 9</time><p>計畫啟動，畫下第一張發想草稿。</p></li>
+                    <li><time>2019 / 10</time><p>初代樣品機軟硬體整合成功，帶去 Maker Faire Taipei 2019 試玩，反應熱烈。</p></li>
+                    <li><time>2019 / 10 底</time><p>加入設定頁：按鍵對應、Scratch 工作坊 ID，改用 lighttpd 跑 CGI。</p></li>
+                    <li><time>2020 / 1</time><p>外殼試做與軟硬體再整合，準備集資：先以概念機推廣理念，達標後再研發二代機與出版課程。</p></li>
+                    <li><time>2020 / 2</time><p>產品攝影與遊戲錄影。</p></li>
+                    <li><time>2020 / 9</time><p>自己畫 KiCad 主板、手焊打樣。</p></li>
+                    <li><time>2024 – 2025</time><p>主板持續改版到 v1.5。</p></li>
+                    <li><time>2026 / 4</time><p>整理 v1.4 系統的部署筆記，寫成無人值守的自動部署腳本。</p></li>
+                </ol>
+            </div>
+            <div>
+                <span class="eyebrow">學到的事</span>
+                <h2 class="sec-title">理想很豐滿，現實很骨感</h2>
+                <p>Scratch Boy 有我最喜歡的精簡外型，但 Raspberry Pi 跑完整瀏覽器的耗電太高，原本的電池撐不住，改用 18650 之後外型就走樣了。當年的 Scratch 也還沒為這種小機器最佳化。</p>
+                <p>這些經驗直接決定了下一代的方向：換成省電、開機即用的 RP2040 微控制器，從 MakeCode Arcade 起步，再一路長成能跑 Doom、模擬器與原生遊戲的生態系。</p>
+                <div class="actions"><a class="btn btn-primary" href="magc.html">看下一代 MAGC →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系列 -->
+    <section id="series">
+        <span class="eyebrow">掌機系列</span>
+        <h2 class="sec-title">同一個初衷，兩代機器</h2>
+        <div class="series">
+            <a class="current" href="scratchboy.html" aria-current="page">
+                <img src="images/scratch_console.jpg" alt="" loading="lazy">
+                <span><small>第一代 · Raspberry Pi</small><strong>Scratch Boy</strong></span>
+            </a>
+            <a href="magc.html">
+                <img src="images/magc/trio.jpg" alt="" loading="lazy">
+                <span><small>第二代 · RP2040</small><strong>MAGC 掌機生態系 →</strong></span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="foot">
+        <p>ScratchBoy is a project of the Scratchboy Team.</p>
+        <p>Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at <a href="https://scratch.mit.edu" target="_blank" rel="noopener">scratch.mit.edu</a>.</p>
+        <p><a href="index.html">← 回 Pondahai 主頁</a></p>
+    </footer>
+</main>
+
+</body>
+</html>
