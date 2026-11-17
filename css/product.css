@@ -198,6 +198,8 @@ p { margin: 0 0 14px; }
     align-items: center;
 }
 
+.split > * { min-width: 0; }
+
 .split.rev > :first-child { order: 2; }
 
 /* ---------- 卡片格 ---------- */
@@ -330,6 +332,7 @@ p { margin: 0 0 14px; }
 .shot img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .shot.tall img { aspect-ratio: 1 / 1; }
 .shot.contain img { object-fit: contain; background: #000; }
+.shot.natural img { aspect-ratio: auto; }
 
 /* ---------- 架構圖 ---------- */
 .diagram {
